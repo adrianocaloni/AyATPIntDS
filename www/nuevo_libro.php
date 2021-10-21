@@ -8,7 +8,7 @@ if (isset($_SESSION['usuario'])) {
     $usuario = unserialize($_SESSION['usuario']);
 
     //CARGAMOS UN NUEVO LIBRO
-    $libro= new Libro ($usuario, $_POST['Titulo'],$_POST['Genero'], $_POST['Autor'], $_POST['Stock']);
+    $libro= new Libro ($usuario, $_POST['Titulo'],$_POST['Genero'], $_POST['Autor']);
     $rl = new RepositorioLibro();
     $numero= $rl-> guardar($libro);
 

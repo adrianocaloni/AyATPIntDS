@@ -2,9 +2,8 @@ function accion(){
 
     var tipo= document.querySelector('#tipo').value; 
     var nombreLibro= document.querySelector('#numeroLibro').value; 
-    var cant= document.querySelector('#cantidad').value;
-    var cadena = "tipo="+tipo+"&nombreLibro="+nombreLibro+"&cantidad="+cant;
-
+    var nombre= document.querySelector('#nombreGenero').value;
+    var cadena = "tipo="+tipo+"&nombreLibro="+nombreLibro+"&nombre="+nombre;
 
     var solicitud = new XMLHttpRequest();
 
@@ -32,18 +31,19 @@ function accion(){
 
 
 
-function prestar(nroLibro){
-    document.querySelector('#tipo').value= "p";
-    document.querySelector('#tipo_accion').innerHTML= "Prestar";
+function modificarGenero(nroLibro){
+    document.querySelector('#tipo').value= "m";
+    document.querySelector('#tipo_accion').innerHTML= "Cambiar Genero";
     document.querySelector('#numeroLibro').value =nroLibro;
     document.querySelector('#nombreGenero').focus(); 
 
 }
 
-function reponer(nroLibro){
-    document.querySelector('#tipo').value= "r";
-    document.querySelector('#tipo_accion').innerHTML= "Reponer";
+function agregarGenero(nroLibro){
+    document.querySelector('#tipo').value= "a";
+    document.querySelector('#tipo_accion').innerHTML= "Agregar Genero";
     document.querySelector('#numeroLibro').value =nroLibro;
     document.querySelector('#nombreGenero').focus(); 
 }
+
 

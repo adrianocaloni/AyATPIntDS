@@ -28,7 +28,6 @@ if (isset($_SESSION['usuario'])) {
             <input name="Titulo" id= "titulo" class="form-control form-control-lg" placeholder="Titulo"><br>
             <input name="Genero" id= "genero" class="form-control form-control-lg" placeholder="Genero"><br>
             <input name="Autor" id= "autor" class="form-control form-control-lg" placeholder="Autor"><br>
-            <input name="Stock" id= "stock" class="form-control form-control-lg" placeholder="Stock"><br>
             <input type="submit" value="Guardar Libro" class="btn btn-primary">
         </form>        
       </div> 
