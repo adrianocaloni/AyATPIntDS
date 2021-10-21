@@ -10,7 +10,6 @@ if (isset($_SESSION['usuario'])) {
     $rl = new RepositorioLibro();
     $libros = $rl->get_all($usuario);
 
-
 } else {
     header('Location: index.php');
 }
@@ -28,11 +27,15 @@ if (isset($_SESSION['usuario'])) {
 
     <body class="container">
       <div class="text-center">
-        <div>
-          <h4 id="tipo_accion"> Stock Disponible : </h4>
-            <input type="number"  id="cantidadDisponible"></br></br>
-
-        </div>
+            <form method="POST" action="buscar.php" >
+            <div class="form-group">
+              <label for="doc"></label> 
+              <input type="text" name="doc" class="form-control" id="doc">
+            </div></br>
+              <input type="submit" value="Consultar" class="btn btn-info" name="btn2">
+            </form>
+    
+      </br></br>
       <?php
             if (isset($_GET['mensaje'])) {
                 echo '<div id="mensaje" class="alert alert-primary text-center">

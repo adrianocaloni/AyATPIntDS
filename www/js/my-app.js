@@ -40,21 +40,21 @@ function accion(){
 function prestar(nroLibro){
     
     document.querySelector('#tipo').value= "p";
-    document.querySelector('#cantidad').disabled=false;
-    document.querySelector('#accion').style.display = 'block'
     document.querySelector('#tipo_accion').innerHTML= "Prestar";
     document.querySelector('#numeroLibro').value =nroLibro;
     document.querySelector('#cantidad').focus(); 
+    document.querySelector('#cantidad').disabled=false;
+    document.querySelector('#accion').style.display = 'block'
 
 }
 
 function reponer(nroLibro){
     document.querySelector('#tipo').value= "r";
-    document.querySelector('#cantidad').disabled=false;
-    document.querySelector('#accion').style.display = 'block'
     document.querySelector('#tipo_accion').innerHTML= "Reponer";
     document.querySelector('#numeroLibro').value =nroLibro;
     document.querySelector('#cantidad').focus(); 
+    document.querySelector('#cantidad').disabled=false;
+    document.querySelector('#accion').style.display = 'block'
 
    
 }
