@@ -46,13 +46,14 @@ if (isset($_SESSION['usuario'])) {
             } else {
               foreach ($libros as $unLibro){
                 $l = $unLibro->getId();
+                $g = $unLibro->getGenero();
                   echo "<tr>";
                   echo "<td>$l</td>";
                   echo "<td>".$unLibro->getTitulo()."</td>";
                   echo "<td id ='generoNuevo-$l'>".$unLibro->getGenero()."</td>";
                   echo "<td>".$unLibro->getAutor()."</td>";
-                  echo "<td><button class='btn btn-outline-success' type='button' onclick='modificarGenero($l)'> <img src='img/modificar.ico'></button></td>";
-                  echo "<td><button class='btn btn-outline-success' type='button' onclick='agregarGenero($l)'><img src='img/agregar.ico'></button></td>";
+                  echo "<td><button class='btn btn-outline-success' type='button' onclick='prestar($l)'> <img src='img/modificar.ico'></button></td>";
+                  echo "<td><button class='btn btn-outline-success' type='button' onclick='reponer($l)'><img src='img/agregar.ico'></button></td>";
                   echo "<td><a class='btn btn-outline-danger' href='eliminar.php?l=$l' role='button'><img src='img/borrar.ico'></a></td>";
                   echo "<tr>";
               }
@@ -66,8 +67,8 @@ if (isset($_SESSION['usuario'])) {
             <input type="hidden" id="tipo">
             <input type="hidden" id="numeroLibro">
 
-            <label for="nombre">Nombre:</label> 
-            <input type="text"  id="nombreGenero"></br></br>
+            <label for="nombre">Cantidad:</label> 
+            <input type="number"  id="cantidad"></br></br>
             <button type="button"  class="btn btn-success" onclick="accion();">Realizar Acción</button><br>
 
           </div><hr>

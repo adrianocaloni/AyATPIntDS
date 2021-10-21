@@ -12,15 +12,16 @@ class RepositorioLibro extends Repositorio
         $genero = $libro-> getGenero();
         $autor = $libro -> getAutor();
         $idUsuario = $libro-> getIdUsuario();
+        $stock = $libro ->getStock();
 
-        $q = "INSERT INTO biblioteca (Titulo, Genero, Autor, Id_Usuario)";
+        $q = "INSERT INTO biblioteca (Titulo, Genero, Autor, Id_Usuario, Stock)";
         $q.= "VALUES (?, ?, ?, ?)";
 
         try {
  
                 $query = self::$conexion->prepare($q);
 
-                $query->bind_param("sssi", $titulo, $genero, $autor, $idUsuario);
+                $query->bind_param("sssi", $titulo, $genero, $autor, $idUsuario, $stock);
 
                     //VAMOS A INTENTAR EJECUTAR LA CONSULTA (QUERY)
                         if ($query->execute()){
@@ -40,7 +41,7 @@ class RepositorioLibro extends Repositorio
     public function get_all(Usuario $usuario){
 
         $idUsuario = $usuario ->getId();
-        $q = "SELECT ID_Libro, Titulo, Genero, Autor FROM biblioteca WHERE id_Usuario = ?";
+        $q = "SELECT ID_Libro, Titulo, Genero, Autor, Stock FROM biblioteca WHERE id_Usuario = ?";
 
         try {
                 $query = self::$conexion->prepare($q);
@@ -65,7 +66,7 @@ class RepositorioLibro extends Repositorio
     
     public function get_one($numeroLibro)
     {
-        $q = "SELECT Titulo, Genero, Autor, id_Usuario  FROM biblioteca WHERE ID_Libro  = ?";
+        $q = "SELECT Titulo, Genero, Autor, id_Usuario, Stock FROM biblioteca WHERE ID_Libro  = ?";
         try {
             $query = self::$conexion->prepare($q);
             $query->bind_param("i", $numeroLibro);
@@ -97,8 +98,21 @@ class RepositorioLibro extends Repositorio
     }
 
 
+    public function actualizarStock(Cuenta $cuenta)
+    {
+        $s = $libro-> getStock();
+        $n= $libro-> getId();
 
-    public function actualizarGenero(Libro $libro)
+        $q = "UPDATE biblioteca SET Stok = ? WHERE ID_Libro = ?";
+
+        $query = self::$conexion->prepare($q);
+        $query->bind_param("ii", $s, $n);
+
+        return $query->execute();
+    }
+    
+    
+    /*public function actualizarGenero(Libro $libro)
 
 
         {
@@ -112,7 +126,7 @@ class RepositorioLibro extends Repositorio
 
 
             return $query->execute();
-        }
+        }*/
 
 
 }

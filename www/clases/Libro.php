@@ -7,15 +7,17 @@ class Libro
     protected $genero;
     protected $titulo; 
     protected $autor;
+    protected $stock;
     protected $idLibro;
 
-    public function __construct(Usuario $usuario, $genero, $titulo, $autor, $idLibro = null)
+    public function __construct(Usuario $usuario, $genero, $titulo, $autor, $idLibro = null, $stock)
     {
         $this->usuario= $usuario;
         $this->genero= $genero;
         $this->titulo= $titulo;
         $this->autor= $autor;
         $this->idLibro= $idLibro;
+        $this->autor= $stock;
     }
     
 
@@ -26,6 +28,7 @@ class Libro
     public function getAutor() {return $this->autor;}
     public function getId() {return $this->idLibro;}
     public function setId($id) {$this->idLibro = $id;}
+    public function getStock() {return $this->stock;}
 
     public function modificarGenero ($nuevoGenero){
 
@@ -37,8 +40,23 @@ class Libro
         }
      
     }
+    public function prestar($cantidad)
+    {
+        if ($this->stock >= $cantidad) {
+            $this->stock = $this->stock - $cantidad;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    public function agregarGenero ($nuevoGenero){
+    public function reponer($cantidad)
+    {
+        $this->stock = $this->stock + $cantidad;
+        return true;
+    }
+    
+    /*public function agregarGenero ($nuevoGenero){
        
         $this->genero = $this->genero + $nuevoGenero;
         return true;
@@ -52,7 +70,7 @@ class Libro
         } else {
             return false;
         }
-    }
+    }*/
  
 }
 
