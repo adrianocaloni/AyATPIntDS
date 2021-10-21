@@ -5,28 +5,28 @@ require_once 'clases/RepositorioUsuario.php';
 require_once 'clases/Libro.php';
 
 session_start();
-if (isset($_SESSION['usuario']) && isset($_POST['nombre_Genero'])) {
+if (isset($_SESSION['usuario']) && isset($_POST['cantidad'])) {
     $usuario = unserialize($_SESSION['usuario']);
     $rl = new RepositorioLibro();
-    $libro = $rc->get_one($_POST['libro']);
+    $libro = $rc->get_one($_POST['numeroLibro']);
     if ($libro->getIdUsuario() != $usuario->getId()) {
         die("Error: La cuenta no pertenece al usuario");
     }
 
-    if ($_POST['tipo'] == 'm') {
-        $r = $libro->modificarGenerom($_POST['nombre_Genero']);
-    } else if ($_POST['tipo'] == 'a') {
-        $r = $libro->actualizarGenero($_POST['nombre_Genero']);
+    if ($_POST['tipo'] == 'p') {
+        $r = $libro->prestar($_POST['cantidad']);
+    } else if ($_POST['tipo'] == 'r') {
+        $r = $libro->reponer($_POST['cantidad']);
     }
     if ($r) {
-        $rl->actualizarGenero($libro);
+        $rl->actualizarStock($libro);
         $respuesta['resultado'] = "OK";
     } else {
         $respuesta['resultado'] = "Error al realizar la operación";
     }
 
-    $respuesta['numero'] = $libro->getId();
-    $respuesta['genero'] = $libro->getGenero();
+    $respuesta['numero_Libro'] = $libro->getId();
+    $respuesta['cant'] = $libro->getStock();
     echo json_encode($respuesta);
 }
 

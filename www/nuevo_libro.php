@@ -8,7 +8,7 @@ if (isset($_SESSION['usuario'])) {
     $usuario = unserialize($_SESSION['usuario']);
 
     //CARGAMOS UN NUEVO LIBRO
-    $libro= new Libro ($usuario, $_POST['Titulo'],$_POST['Genero'], $_POST['Autor']);
+    $libro= new Libro ($usuario, $_POST['Titulo'],$_POST['Genero'], $_POST['Stock']);
     $rl = new RepositorioLibro();
     $numero= $rl-> guardar($libro);
 
@@ -17,7 +17,7 @@ if (isset($_SESSION['usuario'])) {
             header('Location: home.php?mensaje= Error al cargar el Libro');
 
         }else {
-           $libro->setId($numero);
+           $libro->setIdNumer($numero);
            header('Location: home.php?mensaje= Libro creado exitosamente');
         }
 

@@ -1,21 +1,28 @@
+document.querySelector('#cantidad').disabled=true;
+document.querySelector('#accion').style.display = 'none'
+
+
 function accion(){
 
     var tipo= document.querySelector('#tipo').value; 
-    var nombreLibro= document.querySelector('#numeroLibro').value; 
-    var nombre= document.querySelector('#nombreGenero').value;
-    var cadena = "tipo="+tipo+"&nombreLibro="+nombreLibro+"&nombre="+nombre;
+    var numeroLibro= document.querySelector('#numeroLibro').value; 
+    var cantidad= document.querySelector('#cantidad').value;
+    var cadena = "tipo="+tipo+"&numeroLibro="+numeroLibro+"&cantidad="+cantidad;
 
+    document.querySelector('#accion').style.display = 'block'
     var solicitud = new XMLHttpRequest();
+
+
 
     solicitud.onreadystatechange= function(){
         if (this.readyState == 4 && this.status == 200){
             var respuesta = JSON.parse(this.responseText);
-            var identificador = "#generoNuevo-" + respuesta.numero_Libro;
+            var identificador = "#stock-" + respuesta.numero_Libro;
             var celda = document.querySelector(identificador);
 
             if (respuesta.resultado == "OK"){
 
-                celda.innerHTML = respuesta.genero;
+                celda.innerHTML = respuesta.cant;
 
             } else {
                 console.log(respuesta.resultado);
@@ -30,20 +37,25 @@ function accion(){
 }
 
 
-
-function modificarGenero(nroLibro){
-    document.querySelector('#tipo').value= "m";
-    document.querySelector('#tipo_accion').innerHTML= "Cambiar Genero";
+function prestar(nroLibro){
+    
+    document.querySelector('#tipo').value= "p";
+    document.querySelector('#cantidad').disabled=false;
+    document.querySelector('#accion').style.display = 'block'
+    document.querySelector('#tipo_accion').innerHTML= "Prestar";
     document.querySelector('#numeroLibro').value =nroLibro;
-    document.querySelector('#nombreGenero').focus(); 
+    document.querySelector('#cantidad').focus(); 
 
 }
 
-function agregarGenero(nroLibro){
-    document.querySelector('#tipo').value= "a";
-    document.querySelector('#tipo_accion').innerHTML= "Agregar Genero";
+function reponer(nroLibro){
+    document.querySelector('#tipo').value= "r";
+    document.querySelector('#cantidad').disabled=false;
+    document.querySelector('#accion').style.display = 'block'
+    document.querySelector('#tipo_accion').innerHTML= "Reponer";
     document.querySelector('#numeroLibro').value =nroLibro;
-    document.querySelector('#nombreGenero').focus(); 
-}
+    document.querySelector('#cantidad').focus(); 
 
+   
+}
 
