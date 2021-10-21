@@ -66,11 +66,8 @@ class Libro
         return true;
     }
     
-<<<<<<< HEAD
-=======
 
     
  
->>>>>>> acac5998766295c8304dc85fcbe64fd224bc18b9
 }
 

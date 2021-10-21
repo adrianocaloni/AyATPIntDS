@@ -27,34 +27,15 @@ if (isset($_SESSION['usuario'])) {
 
     <body class="container">
       <div class="text-center">
-<<<<<<< HEAD
-        <div>
-          <h4 id="tipo_accion"> Stock Disponible : </h4>
-            <input type="number"  id="cantidadDisponible">
-            <?php
-            if (count($libros)== 0) {
-              echo "<tr><td colspan ='8'> No tiene Stock</td></tr>";
-            } else {
-              foreach ($libros as $unLibro){
-                $s = $unLibro->totStock();
-                  echo "<tr>";
-                  echo "<td>$s</td>";
-              }
-            }
-            ?>
-           
-        </div> </br></br>
-=======
             <form method="POST" action="buscar.php" >
             <div class="form-group">
               <label for="doc"></label> 
               <input type="text" name="doc" class="form-control" id="doc">
             </div></br>
-              <input type="submit" value="Consultar" class="btn btn-info" name="btn2">
+              <input type="submit" value="Buscar por Titulo" class="btn btn-info" name="btn2">
             </form>
     
       </br></br>
->>>>>>> acac5998766295c8304dc85fcbe64fd224bc18b9
       <?php
             if (isset($_GET['mensaje'])) {
                 echo '<div id="mensaje" class="alert alert-primary text-center">
