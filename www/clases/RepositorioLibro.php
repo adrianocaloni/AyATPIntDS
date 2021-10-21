@@ -117,6 +117,7 @@ class RepositorioLibro
 
 public function actualizarGenero(Libro $libro)
 
+
     {
         $genero = $libro-> getGenero();
         $numero = $libro-> getId();
@@ -126,8 +127,8 @@ public function actualizarGenero(Libro $libro)
         $query = self::$conexion->prepare($q);
         $query->bind_param("si", $genero,  $numero );
 
-        return $query->execute();
 
+        return $query->execute();
     }
 
 

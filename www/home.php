@@ -23,12 +23,18 @@ if (isset($_SESSION['usuario'])) {
         <title>Sistema de Libros</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     </head>
+
+   
+    <nav>
+    <label for="nombre">Genero:</label> 
+    
+            <input type="text"  id="buscarGenero">
+            <button type="button" class="btn btn-outline-info" onclick="buscarGenero();"><img src="img/buscar.ico"></button><br>
+    </nav></br>
+
     <body class="container">
-      <div class="jumbotron text-center">
-      <h1>Prestamos de Libros</h1>
-      </div>    
       <div class="text-center">
-        <h3>Listado de Libros</h3>
+        <h3>Listado de Libros</h3> </br>
           <table class="table table-striped">
             <tr>
             <th>Numero de Libro</th><th>Titulo del Libro</th><th>Genero</th><th>Autor</th><th>Modificar</th><th>Agregar</th><th>Eliminar</th>
@@ -45,32 +51,40 @@ if (isset($_SESSION['usuario'])) {
                   echo "<td>".$unLibro->getTitulo()."</td>";
                   echo "<td id ='generoNuevo-$l'>".$unLibro->getGenero()."</td>";
                   echo "<td>".$unLibro->getAutor()."</td>";
-                  echo "<td><button type='button' onclick='modificarGenero($l)'> Modificar Genero</button></td>";
-                  echo "<td><button type='button' onclick='agregarGenero($l)'> Agregar Genero</button></td>";
-                  echo "<td><a href='eliminar.php?l=$l'>Eliminar</a></td>";
+                  echo "<td><button class='btn btn-outline-success' type='button' onclick='modificarGenero($l)'> <img src='img/modificar.ico'></button></td>";
+                  echo "<td><button class='btn btn-outline-success' type='button' onclick='agregarGenero($l)'><img src='img/agregar.ico'></button></td>";
+                  echo "<td><a class='btn btn-outline-danger' href='eliminar.php?l=$l' role='button'><img src='img/borrar.ico'></a></td>";
                   echo "<tr>";
               }
             }
 
             ?>
-          </table>
-          
+          </table> </br></br>
+
           <div id="accion">
             <h4 id="tipo_accion"> Acción</h4>
             <input type="hidden" id="tipo">
             <input type="hidden" id="numeroLibro">
-            <label for="nombre">Nombre del nuevo Genero </label>
-            <input type="text" id="nombreGenero"><br>
-            <button type="button" onclick="accion();">Realizar Acción</button>
+
+            <label for="nombre">Nombre:</label> 
+            <input type="text"  id="nombreGenero"></br></br>
+            <button type="button"  class="btn btn-success" onclick="accion();">Realizar Acción</button><br>
+
           </div><hr>
 
-        <a class="btn btn-primary" href="crear_libro.php">Agregar Libro</a>
+          <div class="d-grid gap-2">
+              <a class="btn btn-primary" href="crear_libro.php">Agregar Libro</a>
+              <a class="btn btn-outline-danger" href="logout.php">Cerrar sesión</a>
+          </div>
+       
 
-        <p><a href="logout.php">Cerrar sesión</a></p>
+        
       </div> 
     </body>
 
+
     <script type="text/javascript" src="js/my-app.js"></script>
+
 
 </html>
 

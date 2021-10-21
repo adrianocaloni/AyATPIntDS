@@ -1,4 +1,5 @@
 function accion(){
+
     var tipo= document.querySelector('#tipo').value; 
     var nombreLibro= document.querySelector('#numeroLibro').value; 
     var nombre= document.querySelector('#nombreGenero').value;
@@ -19,15 +20,14 @@ function accion(){
             } else {
                 console.log(respuesta.resultado);
             }
-            celda.scrollIntoView();
+          
         }
     };
-
     solicitud.open("POST", "accion.php",true);
-    solicitud.setRequestHeader("Content-type", "application/x-www-form-url");
+    solicitud.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     solicitud.send(cadena);
+ 
 }
-
 
 
 
@@ -36,4 +36,15 @@ function modificarGenero(nroLibro){
     document.querySelector('#tipo_accion').innerHTML= "Cambiar Genero";
     document.querySelector('#numeroLibro').value =nroLibro;
     document.querySelector('#nombreGenero').focus(); 
+
+}
+
+function agregarGenero(nroLibro){
+    document.querySelector('#tipo').value= "a";
+    document.querySelector('#tipo_accion').innerHTML= "Agregar Genero";
+    document.querySelector('#numeroLibro').value =nroLibro;
+    document.querySelector('#nombreGenero').focus(); 
+}
+
+
 }
