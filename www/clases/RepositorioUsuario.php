@@ -1,27 +1,10 @@
 <?php
 require_once '.env.php';
-require_once 'clases/Usuario.php';
+require_once 'clases/Repositorio.php';
+require_once 'Usuario.php';
 
-class RepositorioUsuario
+class RepositorioUsuario extends Repositorio
 {
-    private static $conexion = null;
-
-    public function __construct()
-    {
-        if (is_null(self::$conexion)) {
-            $credenciales = credenciales();
-            self::$conexion = new mysqli(   $credenciales['servidor'],
-                                            $credenciales['usuario'],
-                                            $credenciales['clave'],
-                                            $credenciales['base_de_datos']);
-            if(self::$conexion->connect_error) {
-                $error = 'Error de conexión: '.self::$conexion->connect_error;
-                self::$conexion = null;
-                die($error);
-            }
-            self::$conexion->set_charset('utf8'); 
-        }
-    }
 
     public function login($nombre_usuario, $clave)
     {

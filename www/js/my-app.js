@@ -45,6 +45,3 @@ function agregarGenero(nroLibro){
     document.querySelector('#numeroLibro').value =nroLibro;
     document.querySelector('#nombreGenero').focus(); 
 }
-
-
-}

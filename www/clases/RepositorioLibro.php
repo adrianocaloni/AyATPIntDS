@@ -1,28 +1,11 @@
 <?php
 require_once '.env.php';
+require_once 'clases/Repositorio.php';
 require_once 'clases/Usuario.php';
-require_once 'clases/Libro.php';
+require_once 'clases/Cuenta.php';
 
-class RepositorioLibro
+class RepositorioLibro extends Repositorio
 {
-    private static $conexion = null;
-
-    public function __construct(){
-        if (is_null(self::$conexion)) {
-            $credenciales = credenciales();
-            self::$conexion = new mysqli(   $credenciales['servidor'],
-                                            $credenciales['usuario'],
-                                            $credenciales['clave'],
-                                            $credenciales['base_de_datos']
-                                        );
-            if(self::$conexion->connect_error) {
-                $error = 'Error de conexión: '.self::$conexion->connect_error;
-                self::$conexion = null;
-                die($error);
-            }
-            self::$conexion->set_charset('utf8'); 
-        }
-    }
     
     public function guardar (Libro $libro)  {
         $titulo = $libro->getTitulo();
@@ -115,21 +98,21 @@ class RepositorioLibro
 
 
 
-public function actualizarGenero(Libro $libro)
+    public function actualizarGenero(Libro $libro)
 
 
-    {
-        $genero = $libro-> getGenero();
-        $numero = $libro-> getId();
-   
+        {
+            $genero = $libro-> getGenero();
+            $numero = $libro-> getId();
+    
 
-        $q = "UPDATE biblioteca SET genero = ? WHERE ID_Libro = ?";
-        $query = self::$conexion->prepare($q);
-        $query->bind_param("si", $genero,  $numero );
+            $q = "UPDATE biblioteca SET genero = ? WHERE ID_Libro = ?";
+            $query = self::$conexion->prepare($q);
+            $query->bind_param("si", $genero,  $numero );
 
 
-        return $query->execute();
-    }
+            return $query->execute();
+        }
 
 
 }
