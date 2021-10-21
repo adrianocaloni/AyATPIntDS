@@ -30,9 +30,20 @@ if (isset($_SESSION['usuario'])) {
       <div class="text-center">
         <div>
           <h4 id="tipo_accion"> Stock Disponible : </h4>
-            <input type="number"  id="cantidadDisponible"></br></br>
-
-        </div>
+            <input type="number"  id="cantidadDisponible">
+            <?php
+            if (count($libros)== 0) {
+              echo "<tr><td colspan ='8'> No tiene Stock</td></tr>";
+            } else {
+              foreach ($libros as $unLibro){
+                $s = $unLibro->totStock();
+                  echo "<tr>";
+                  echo "<td>$s</td>";
+              }
+            }
+            ?>
+           
+        </div> </br></br>
       <?php
             if (isset($_GET['mensaje'])) {
                 echo '<div id="mensaje" class="alert alert-primary text-center">

@@ -58,8 +58,7 @@ class RepositorioUsuario
         }
     }
 
-
-    // ESTE METODO ME RETORNA EL USUARIO POR SU ID 
+    //METODO QUE RETORNA EL USUARIO POR SU ID 
 
     public function get_one($id)
     {

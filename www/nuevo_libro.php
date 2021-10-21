@@ -7,6 +7,7 @@ session_start(); //RETOMO EL USUARIO
 if (isset($_SESSION['usuario'])) {
     $usuario = unserialize($_SESSION['usuario']);
 
+    
     //CARGAMOS UN NUEVO LIBRO
     $libro= new Libro ($usuario, $_POST['Titulo'],$_POST['Genero'], $_POST['Stock']);
     $rl = new RepositorioLibro();

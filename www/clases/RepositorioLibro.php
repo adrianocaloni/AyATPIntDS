@@ -114,7 +114,6 @@ class RepositorioLibro extends Repositorio
         return $query->execute();
     }
     
-    
 
 
 }

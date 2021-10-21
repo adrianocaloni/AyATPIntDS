@@ -66,6 +66,5 @@ class Libro
         return true;
     }
     
- 
 }
 
