@@ -99,21 +99,38 @@ class RepositorioLibro extends Repositorio
     }
 
 
-    public function actualizarStock(Libro $libro)
+    
+  /*  public function buscar($nombre)
     
     {
-        $s = $libro->getStock();
-        $n=  $libro->getIdNumer();
         
+        $q = "SELECT Titulo, Genero, Stock, id_Usuario FROM biblioteca WHERE Titulo  = $nombre";
 
-        $q = "UPDATE biblioteca SET Stock = ? WHERE ID_Libro = ?";
 
-        $query = self::$conexion->prepare($q);
-        $query->bind_param("ii", $n, $s);
+        try {
+            $query = self::$conexion->prepare($q);
+            $query->bind_param("s", $titulo);
+            $query->bind_result($numeroLibro, $titulo, $genero, $stock);
 
-        return $query->execute();
+            if ($query->execute()){
+                $listaLibros = array();
+                    while ($query->fetch()){
+                        $listaLibrosBuscados[] = new Libro($usuario, $titulo, $genero, $stock, $numeroLibro);
+                        
+                    }
+                    return $listaLibrosBuscados;
+            }
+                return false;
+        } catch(Exception $e){
+            return false;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> acac5998766295c8304dc85fcbe64fd224bc18b9
 
+  
+    }*/
+   
 
 }
